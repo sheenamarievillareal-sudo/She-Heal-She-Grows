@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>She Heals, She Grows</title>
+<style>
+:root{--bg:#FBF6EA;--card:#fff;--ink:#3b3a35;--mute:#78756b;--accent:#B9DC8F;--accent-d:#5f8a2f;--sage:#A9B99A;--gold:#C9A24B;--line:#ece4d0;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#1f211b;--card:#2a2d25;--ink:#f1ecdc;--mute:#b4b09f;--accent:#7fa84f;--accent-d:#c9e6a0;--line:#3a3d32}}
+*{box-sizing:inherit}html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 Georgia,'Times New Roman',serif}
+#app{max-width:720px;margin:0 auto;padding:16px 16px calc(96px + env(safe-area-inset-bottom,0px))}
+header{text-align:center;padding:12px 0 8px}
+h1{font-size:1.5rem;margin:0;color:var(--accent-d)}h2{font-size:1.2rem;margin:20px 0 8px}
+.tag{color:var(--gold);font-style:italic;font-size:.9rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;margin:12px 0;animation:in .4s ease}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.hero{background:linear-gradient(135deg,var(--accent),var(--bg));text-align:center;padding:28px 20px}
+.hero p.big{font-size:1.3rem;margin:0 0 10px}.verse{font-style:italic;color:var(--mute);font-size:.95rem}
+button,.btn{font:inherit;font-size:.9rem;border:1px solid var(--accent-d);background:transparent;color:var(--accent-d);border-radius:999px;padding:6px 14px;margin:4px 6px 0 0;cursor:pointer;text-decoration:none;display:inline-block}
+button.p{background:var(--accent-d);color:#fff}button.p:hover{opacity:.9}
+.small{font-size:.85rem;color:var(--mute)}
+textarea,input,select{width:100%;font:inherit;padding:10px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);margin:6px 0}
+textarea{min-height:110px}
+nav{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);display:flex;justify-content:center;padding-bottom:env(safe-area-inset-bottom,0px);z-index:5}
+nav button{flex:1;max-width:140px;border:0;border-radius:0;margin:0;padding:8px 2px;color:var(--mute);font-size:.68rem;line-height:1.2}
+nav button span{display:block;font-size:1.3rem}nav button.on{color:var(--accent-d);font-weight:bold}
+.bar{height:10px;background:var(--line);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:var(--accent-d);transition:width .5s}
+.moods button{font-size:1.4rem;padding:4px 10px}.moods button.on{background:var(--accent)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.pill{background:var(--accent);color:#2b3a14;border-radius:999px;padding:2px 10px;font-size:.75rem}
+.banner{background:var(--card);border:1px dashed var(--gold);border-radius:14px;padding:10px 14px;font-size:.85rem;text-align:center}
+.toast{position:fixed;top:12px;left:50%;transform:translateX(-50%);background:var(--accent-d);color:#fff;padding:8px 16px;border-radius:999px;font-size:.85rem;z-index:9}
+</style></head><body>
+<div id="app"></div><nav id="nav"></nav>
+<script>
+const A=[["I am rooted in God's love, and I am growing in His time.","Jeremiah 17:8","He shall be as a tree planted by the waters."],
+["My healing is not a race. Every small step still counts.","Isaiah 40:31","They that wait upon the Lord shall renew their strength."],
+["I release what I cannot carry and receive God's peace.","Philippians 4:7","The peace of God, which passeth all understanding."],
+["I am allowed to feel, to rest, and to begin again.","Lamentations 3:22-23","His mercies are new every morning."],
+["I am becoming who God created me to be.","Psalm 139:14","I am fearfully and wonderfully made."]];
+const D=[{t:"Rooted in Stillness",v:"Psalm 46:10",q:"Be still, and know that I am God.",m:"Roots grow quietly, underground, long before any fruit appears. Today, give yourself permission to be still. Healing often happens in the unseen places, while you rest in God's presence.",r:["Where in my life am I rushing instead of resting?","What would it look like to trust God with the pace of my healing?"],p:"Lord, teach me to be still. Help me trust the quiet work You are doing in me. Amen."},
+{t:"Gentle With Myself",v:"Psalm 103:13",q:"Like as a father pitieth his children, so the Lord pitieth them that fear him.",m:"God meets you with compassion, not criticism. If He is gentle with you, you can learn to be gentle with yourself.",r:["What harsh words do I speak to myself?","What would God say to me instead?"],p:"Father, thank You for Your tenderness. Help me speak kindly to my own heart. Amen."},
+{t:"Seasons of Growth",v:"Ecclesiastes 3:1",q:"To every thing there is a season, and a time to every purpose under the heaven.",m:"You may be in a season of planting, watering, or waiting. Each one matters. Root first, fruit later.",r:["What season am I in right now?","What is one way I can nurture it today?"],p:"God of every season, help me embrace where I am and trust where You are leading. Amen."}];
+const P=["What am I carrying today that I can hand to God?","Where did I notice growth in myself this week?","What emotion is asking for my attention right now?","Write a letter to your younger self."];
+const N=[{t:"Expert of the Month: Welcome to our November guest",d:"Nov 8",b:"Join Coach Tracy as we welcome this month's featured expert for a live conversation on healing and boundaries.",l:"Register"},
+{t:"New devotional series: Seasons of Growth",d:"Nov 5",b:"A 7-day series is now open in the Daily Devotional tab. Start any day.",l:""},
+{t:"30-Day Gratitude Challenge begins Dec 1",d:"Nov 3",b:"Write one gratitude entry a day in your Healing Journal. Share your wins in our community.",l:"Join"},
+{t:"Community Gathering (Online)",d:"Nov 1",b:"Fellowship, prayer and encouragement with Coach Tracy and the sisters.",l:"Save my seat"}];
+const day=new Date().getDate();
+const S={tab:0,user:null,fav:new Set(),done:new Set(),mood:null,goals:[{t:"Read one devotional",d:0},{t:"Journal three times",d:0},{t:"Pray for 5 quiet minutes",d:0}],j:[],refl:0,di:day%D.length,ai:day%A.length,edit:null,prompt:0,gm:"journal"};
+const T=["Growthfirmation","Devotional","Growth Journey","Healing Journal","Announcements"],I=["🌱","📖","🌸","✍️","📣"];
+const $=s=>document.getElementById(s),e=s=>String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+function toast(m){const t=document.createElement("div");t.className="toast";t.textContent=m;document.body.append(t);setTimeout(()=>t.remove(),1800)}
+function need(){if(!S.user){const m=prompt("Prototype sign-in: enter your email to simulate a free account (nothing is sent or stored on a server).");if(m){S.user=m;toast("Signed in (simulated)");render()}return false}return true}
+function copy(t){try{navigator.clipboard.writeText(t);toast("Copied")}catch(x){toast("Copy not available")}}
+function share(t){if(navigator.share)navigator.share({text:t}).catch(()=>{});else copy(t)}
+function head(){return `<header><h1>She Heals, She Grows</h1><div class="tag">Root First. Fruit Later.</div><div class="small">${S.user?`Signed in as ${e(S.user)} · <a href="#" onclick="S.user=null;render();return false">sign out</a>`:`<a href="#" onclick="need();return false">Create free account / log in</a> to save your journey`}</div></header>`}
+function v0(){const a=A[S.ai];const k=S.fav.has(S.ai);
+return `<div class="card hero"><div class="small">Growthfirmation of the Day</div><p class="big">“${e(a[0])}”</p><div class="verse">${a[1]} — ${a[2]}</div>
+<button onclick="copy(A[S.ai][0]+' — '+A[S.ai][1])">Copy Affirmation</button><button onclick="share(A[S.ai][0]+' — '+A[S.ai][1])">Share</button><button class="${k?'p':''}" onclick="if(need()){S.fav.has(S.ai)?S.fav.delete(S.ai):S.fav.add(S.ai);render()}">${k?'♥ Saved':'♡ Save favorite'}</button></div>
+<h2>Previous Growthfirmations</h2>`+A.map((x,i)=>i==S.ai?"":`<div class="card"><div>“${e(x[0])}”</div><div class="verse">${x[1]}</div><button onclick="S.ai=${i};render();scrollTo(0,0)">View card</button>${S.fav.has(i)?'<span class="pill">♥ favorite</span>':''}</div>`).join("")}
+function v1(){const d=D[S.di],c=S.done.has(S.di);
+return `<div class="card"><div class="row"><span class="pill">Today's Devotional</span><span class="small">${D.length} in library</span></div><h2>${e(d.t)}</h2><p class="verse">${d.v} — “${e(d.q)}”</p><p>${e(d.m)}</p>
+<b>Reflect</b><ol>${d.r.map(x=>`<li>${e(x)}</li>`).join("")}</ol><b>Closing prayer</b><p><i>${e(d.p)}</i></p>
+<button class="${c?'p':''}" onclick="if(need()){S.done.has(S.di)?S.done.delete(S.di):S.done.add(S.di);render()}">${c?'✓ Completed':'Mark as completed'}</button></div>
+<h2>Devotional Library</h2>`+D.map((x,i)=>`<div class="card row"><div><b>${e(x.t)}</b><div class="small">${x.v}</div></div><div>${S.done.has(i)?'<span class="pill">✓ read</span>':''}<button onclick="S.di=${i};render();scrollTo(0,0)">Open</button></div></div>`).join("")}
+function v2(){const g=S.goals.filter(x=>x.d).length,tot=S.goals.length+3,pc=Math.round((g+S.done.size+(S.refl?1:0)+(S.mood!==null?1:0))/(tot+1)*100);
+const ms=[[1,"First step taken 🌱"],[40,"Roots are growing 🌿"],[75,"Blooming beautifully 🌸"]].filter(m=>pc>=m[0]||m[0]==1&&pc>0);
+return `<div class="card"><b>Daily check-in</b><div class="small">How is your heart today?</div><div class="moods">${["😔","😐","🙂","😊","🥰"].map((m,i)=>`<button class="${S.mood===i?'on':''}" onclick="S.mood=${i};render()">${m}</button>`).join("")}</div>${S.mood!==null?'<p class="small">Thank you for checking in. Whatever you feel is welcome here.</p>':''}</div>
+<div class="card"><div class="row"><b>Your progress</b><span>${pc}%</span></div><div class="bar"><i style="width:${Math.min(pc,100)}%"></i></div><p class="small">${S.done.size} devotional(s) completed · ${S.j.length} journal entr${S.j.length==1?'y':'ies'} · ${S.refl?'reflection done':'reflection open'}</p>${ms.map(m=>`<span class="pill">${m[1]}</span> `).join("")}</div>
+<div class="card"><b>Weekly growth goals</b>${S.goals.map((x,i)=>`<label style="display:block;margin:6px 0"><input type="checkbox" style="width:auto" ${x.d?'checked':''} onchange="S.goals[${i}].d=this.checked;render()"> ${e(x.t)}</label>`).join("")}</div>
+<div class="card"><b>Weekly reflection</b><p>What is one area where you grew this week, even in a small way?</p><textarea id="wr" placeholder="Write your reflection...">${e(S.wrText||"")}</textarea><button class="p" onclick="S.wrText=$('wr').value;S.refl=S.wrText.trim()?1:0;if(S.user)toast('Saved (prototype)');else toast('Create an account to keep this');render()">Save reflection</button></div>`}
+function v3(){const gm={journal:["Journal","Write freely about your day, your heart, your healing."],gratitude:["Gratitude","List what you are thankful for today."],aware:["Emotional awareness","Name what you feel, where you feel it, and what it may need."]};
+const ed=S.edit!==null?S.j[S.edit]:null;
+return `<div class="banner">🔒 Journal entries are private to the account owner. ${S.user?'<b>Prototype:</b> entries are held in this browser tab only until the database is connected.':'Guests can explore. Create a free account to save across devices.'}</div>
+<div class="card"><div class="moods">${Object.keys(gm).map(k=>`<button class="${S.gm==k?'on':''}" style="font-size:.85rem" onclick="S.gm='${k}';render()">${gm[k][0]}</button>`).join("")}</div>
+<p class="small">${gm[S.gm][1]}</p><p class="verse">Prompt: ${e(P[S.prompt])} <a href="#" onclick="S.prompt=(S.prompt+1)%P.length;render();return false">new prompt</a></p>
+<textarea id="jt" placeholder="Start writing...">${ed?e(ed.x):""}</textarea><button class="p" onclick="saveJ()">${ed?'Update entry':'Save entry'}</button>${ed?'<button onclick="S.edit=null;render()">Cancel</button>':''}</div>
+<h2>Previous entries</h2>${S.j.length?S.j.map((x,i)=>`<div class="card"><div class="row"><span class="pill">${x.k}</span><span class="small">${x.d}</span></div><p style="white-space:pre-wrap">${e(x.x)}</p><button onclick="S.edit=${i};render();scrollTo(0,0)">Edit</button><button onclick="if(confirm('Delete this entry?')){S.j.splice(${i},1);render()}">Delete</button></div>`).join(""):'<p class="small">No entries yet. Your first one is waiting.</p>'}`}
+function saveJ(){const x=$("jt").value.trim();if(!x)return toast("Write something first");if(!need())return;const d=new Date().toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"});
+if(S.edit!==null){S.j[S.edit].x=x;S.edit=null}else S.j.unshift({x,d,k:S.gm});toast("Entry saved (prototype)");render()}
+function v4(){return `<div class="card hero"><b>From Coach Tracy</b><p>Welcome, sister. This is your sanctuary. Come as you are, and grow at your own pace.</p><a class="btn" href="#" onclick="toast('Add your Facebook group link in the admin settings');return false">Join our Facebook community</a></div>
+<h2>Latest</h2>`+N.map(n=>`<div class="card"><div class="row"><b>${e(n.t)}</b><span class="small">${n.d}</span></div><p>${e(n.b)}</p>${n.l?`<button onclick="toast('Registration link goes here')">${n.l}</button>`:''}</div>`).join("")}
+function render(){const f=[v0,v1,v2,v3,v4][S.tab];$("app").innerHTML=head()+`<h2 style="text-align:center;margin-top:8px">${T[S.tab]}</h2>`+f();
+$("nav").innerHTML=T.map((t,i)=>`<button class="${S.tab==i?'on':''}" onclick="S.tab=${i};render();scrollTo(0,0)"><span>${I[i]}</span>${t.replace("Growth Journey","Journey").replace("Healing Journal","Journal").replace("Announcements","News").replace("Growthfirmation","Affirm").replace("Devotional","Devotion")}</button>`).join("")}
+render();
+</script></body></html>
